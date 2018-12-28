@@ -1,0 +1,43 @@
+{
+  "name": "johnbwoodruff",
+  "version": "1.0.0",
+  "description": "A personal card for John Woodruff (@johnbwoodruff)",
+  "main": "/bin/card.js",
+  "bin": {
+    "johnbwoodruff": "./bin/card.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johnbwoodruff/card.git"
+  },
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "node build.js",
+    "dev": "npm run build && node ./bin/card.js",
+    "lint": "standard",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "card",
+    "npm",
+    "npm card",
+    "npx",
+    "npx card",
+    "business card"
+  ],
+  "author": {
+    "name": "John Woodruff",
+    "email": "johnwoodruff91@gmail.com",
+    "url": "https://johnbwoodruff.com"
+  },
+  "license": "MIT",
+  "files": [
+    "bin/card.js",
+    "bin/output"
+  ],
+  "devDependencies": {
+    "boxen": "^2.1.0",
+    "chalk": "^2.4.1",
+    "standard": "^12.0.1"
+  }
+}
