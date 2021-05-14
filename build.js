@@ -18,7 +18,7 @@ const data = {
   name: chalk.white('           John Woodruff'),
   location: chalk.white('           Utah, USA'),
   handle: chalk.white('johnbwoodruff'),
-  work: chalk.white('Senior Software Engineer at GoReact'),
+  work: chalk.white('Lead Software Engineer at GoReact'),
   twitter: chalk.gray('https://twitter.com/') + chalk.cyan('johnbwoodruff'),
   npm: chalk.gray('https://npmjs.com/') + chalk.red('~johnbwoodruff'),
   github: chalk.gray('https://github.com/') + chalk.green('johnbwoodruff'),
