@@ -5,6 +5,7 @@ import chalk from 'chalk';
 import boxen from 'boxen';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 // Define options for Boxen
 const options = {
@@ -13,69 +14,57 @@ const options = {
   borderStyle: 'round'
 };
 
-// Text + chalk definitions
+const { white, gray, cyan, red, green, blue } = chalk;
+
 const data = {
-  name: chalk.white('           John Woodruff'),
-  location: chalk.white('           Utah, USA'),
-  handle: chalk.white('johnbwoodruff'),
-  work: chalk.white('Senior Software Engineer at Mosaic'),
-  bluesky:
-    chalk.gray('https://bsky.app/profile/') + chalk.cyan('johnbwoodruff.com'),
-  npm: chalk.gray('https://npmjs.com/') + chalk.red('~johnbwoodruff'),
-  github: chalk.gray('https://github.com/') + chalk.green('johnbwoodruff'),
-  dev: chalk.gray('https://dev.to/') + chalk.green('johnbwoodruff'),
-  linkedin:
-    chalk.gray('https://linkedin.com/in/') + chalk.blue('johnbwoodruff'),
-  web: chalk.cyan('https://johnbwoodruff.com'),
-  npx: chalk.red('npx') + ' ' + chalk.white('johnbwoodruff'),
-  labelWork: chalk.white.bold('       Work:'),
-  labelBluesky: chalk.white.bold('    Bluesky:'),
-  labelnpm: chalk.white.bold('        npm:'),
-  labelGitHub: chalk.white.bold('     GitHub:'),
-  labelDev: chalk.white.bold('       Blog:'),
-  labelLinkedIn: chalk.white.bold('   LinkedIn:'),
-  labelWeb: chalk.white.bold('        Web:'),
-  labelCard: chalk.white.bold('       Card:')
+  name: white('           John Woodruff'),
+  location: white('           Utah, USA'),
+  handle: white('johnbwoodruff'),
+  work: white('Senior Software Engineer at Mosaic'),
+
+  // Social links
+  links: {
+    bluesky: `${gray('https://bsky.app/profile/')}${cyan('johnbwoodruff.com')}`,
+    npm: `${gray('https://npmjs.com/')}${red('~johnbwoodruff')}`,
+    github: `${gray('https://github.com/')}${green('johnbwoodruff')}`,
+    dev: `${gray('https://dev.to/')}${green('johnbwoodruff')}`,
+    linkedin: `${gray('https://linkedin.com/in/')}${blue('johnbwoodruff')}`,
+    web: cyan('https://johnbwoodruff.com'),
+  },
+
+  // Labels
+  labels: {
+    work: white.bold('       Work:'),
+    bluesky: white.bold('    Bluesky:'),
+    npm: white.bold('        npm:'),
+    github: white.bold('     GitHub:'),
+    dev: white.bold('       Blog:'),
+    linkedin: white.bold('   LinkedIn:'),
+    web: white.bold('        Web:'),
+    card: white.bold('       Card:'),
+  },
+
+  npx: `${red('npx')} ${white('johnbwoodruff')}`,
 };
 
-// Actual strings we're going to output
-const newline = '\n';
-const heading = `${data.name} / ${data.handle}`;
-const location = `${data.location}`;
-const professional = `${data.labelWork}  ${data.work}`;
-const bluesky = `${data.labelBluesky}  ${data.bluesky}`;
-const npm = `${data.labelnpm}  ${data.npm}`;
-const github = `${data.labelGitHub}  ${data.github}`;
-const linkedin = `${data.labelLinkedIn}  ${data.linkedin}`;
-const blog = `${data.labelDev}  ${data.dev}`;
-const website = `${data.labelWeb}  ${data.web}`;
-const card = `${data.labelCard}  ${data.npx}`;
+const output = [
+  `${data.name} / ${data.handle}`,
+  data.location,
+  '',
+  `${data.labels.work}  ${data.work}`,
+  `${data.labels.bluesky}  ${data.links.bluesky}`,
+  `${data.labels.npm}  ${data.links.npm}`,
+  `${data.labels.github}  ${data.links.github}`,
+  `${data.labels.linkedin}  ${data.links.linkedin}`,
+  `${data.labels.dev}  ${data.links.dev}`,
+  `${data.labels.web}  ${data.links.web}`,
+  '',
+  `${data.labels.card}  ${data.npx}`,
+].join('\n');
 
-// Put all our output together into a single variable so we can use boxen effectively
-const output =
-  heading +
-  newline +
-  location +
-  newline +
-  newline +
-  professional +
-  newline +
-  bluesky +
-  newline +
-  npm +
-  newline +
-  github +
-  newline +
-  linkedin +
-  newline +
-  blog +
-  newline +
-  website +
-  newline +
-  newline +
-  card;
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 fs.writeFileSync(
-  path.join(new URL('.', import.meta.url).pathname, 'bin/output'),
+  path.join(__dirname, 'bin/output'),
   chalk.green(boxen(output, options))
 );
