@@ -2,6 +2,7 @@
   "name": "johnbwoodruff",
   "version": "1.0.2",
   "description": "A personal card for John Woodruff (@johnbwoodruff)",
+  "type": "module",
   "main": "/bin/card.js",
   "bin": {
     "johnbwoodruff": "./bin/card.js"
@@ -14,7 +15,6 @@
     "prepublish": "npm run build",
     "build": "node build.js",
     "dev": "npm run build && node ./bin/card.js",
-    "lint": "standard",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -36,8 +36,7 @@
     "bin/output"
   ],
   "devDependencies": {
-    "boxen": "^2.1.0",
-    "chalk": "^2.4.1",
-    "standard": "^12.0.1"
+    "boxen": "^8.0.1",
+    "chalk": "^5.4.1"
   }
 }
